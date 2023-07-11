@@ -1,0 +1,19 @@
+{
+  "name": "products",
+  "version": "1.0.0",
+  "description": "postgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hr-rfp2305-manticore/Products.git"
+  },
+  "author": "Manticore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hr-rfp2305-manticore/Products/issues"
+  },
+  "homepage": "https://github.com/hr-rfp2305-manticore/Products#readme"
+}
