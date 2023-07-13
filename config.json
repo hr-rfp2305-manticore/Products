@@ -1,0 +1,7 @@
+{
+  "host": "local socket",
+  "user": "andymoc",
+  "pw": "password",
+  "db": "product",
+  "port": "5432"
+}

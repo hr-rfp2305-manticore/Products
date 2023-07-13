@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/hr-rfp2305-manticore/Products/issues"
   },
-  "homepage": "https://github.com/hr-rfp2305-manticore/Products#readme"
+  "homepage": "https://github.com/hr-rfp2305-manticore/Products#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.11.1",
+    "pg-copy-streams": "^6.0.5",
+    "postgres": "^3.3.5"
+  }
 }
