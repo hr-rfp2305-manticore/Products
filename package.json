@@ -1,0 +1,32 @@
+{
+  "name": "products",
+  "version": "1.0.0",
+  "description": "postgreSQL",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "server-dev": "npx nodemon --watch server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hr-rfp2305-manticore/Products.git"
+  },
+  "author": "Manticore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hr-rfp2305-manticore/Products/issues"
+  },
+  "homepage": "https://github.com/hr-rfp2305-manticore/Products#readme",
+  "dependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/node": "^7.22.6",
+    "@babel/preset-env": "^7.22.9",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1",
+    "pg": "^8.11.1",
+    "pg-copy-streams": "^6.0.5",
+    "postgres": "^3.3.5"
+  }
+}
