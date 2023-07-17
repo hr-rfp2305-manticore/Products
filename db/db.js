@@ -11,50 +11,59 @@ const pool = new Pool({
   port: 5432,
 });
 
-const productitem = 'productitem'
-const productstyle = 'productstyle'
 
-const inputFile = '/Users/andymoc/HR/Manticore/product.csv'
+const arrFile = ['productitem', 'productstyle', 'productfeat', 'related', 'productsku']
+const csvFile = ['product.csv', 'styles.csv', 'features.csv', 'related.csv', 'skus.csv']
 
-const execute = async (table, table1) => {
+const execute = async (tables) => {
   try {
     const client = await pool.connect();
 
     await client.query('SET CONSTRAINTS ALL DEFERRED;')
 
-    await client.query(`TRUNCATE "${table}", "${table1}" CASCADE`)
-    console.log(`Truncated ${table} and ${table1}`)
+    for(let i = 0; i < tables.length; i++){
 
-    await client.query('SET CONSTRAINTS ALL IMMEDIATE;')
+      const inputFile = `/Users/andymoc/HR/Manticore/${csvFile[i]}`
 
-    const stream = client.query(copyFrom(`COPY "${table}" FROM STDIN`))
-    const fileStream = fs.createReadStream(inputFile)
+      await client.query(`TRUNCATE "${tables[i]}" CASCADE`)
+      console.log(`Truncated ${tables[i]}`)
 
-    fileStream.on('error', (error) => {
-      console.log('Error in creating a stream', error)
-    })
+      await client.query('SET CONSTRAINTS ALL IMMEDIATE;')
 
-    stream.on('error', (error) => {
-      console.log('Error in creating a read stream', error)
-    })
+      const stream = client.query(copyFrom(`COPY ${tables[i]} FROM STDIN DELIMITER ',' CSV HEADER`))
 
-    stream.on('error', () => {
-      console.log('Completed loading data into ', table)
-      client.release()
-    })
-    fileStream.pipe(stream);
-  }catch(error){
+      const fileStream = fs.createReadStream(inputFile)
+
+      fileStream.on('error', (error) => {
+        console.log('Error in creating a stream', error)
+      })
+
+      stream.on('error', (error) => {
+        console.log('Error in creating a read stream', tables[i],error)
+      })
+
+      stream.on('end', () => {
+        console.log('Completed loading data into ', tables[i])
+        client.release()
+      })
+
+      fileStream.pipe(stream);
+
+    }
+    } catch(error){
     console.log('Error:', error)
   }
+
 };
 
 
-const db = async () => {
+const connection = async () => {
   const client = await pool.connect();
 
   try {
     const res = await client.query(`SELECT NOW()`);
-    console.log("Pool Connection Granted", res);
+    console.log("Pool Connection Granted", res.rows[0]);
+    return res.rows
   } catch (error) {
     console.log("Error:", error);
   } finally {
@@ -63,7 +72,11 @@ const db = async () => {
 };
 
 //invoke above functions
-execute(productitem,productstyle);
-db()
+//uncoment out execute function to copy csv file into database
+// execute(arrFile);
+//invoke db pool connection
+connection()
 
-module.exports = db
+
+
+module.exports = pool

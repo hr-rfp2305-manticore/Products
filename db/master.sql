@@ -1,13 +1,12 @@
-CREATE TABLE IF NOT EXISTS productitem (
+CREATE TABLE IF NOT EXISTS masterlist(
   product_id SERIAL PRIMARY KEY,
   product_name VARCHAR NOT NULL,
   product_slogan TEXT NOT NULL,
   product_desc TEXT NOT NULL,
-  product_cat VARCHAR NOT NULL,
-  product_price INT NOT NULL
+  product_cat VARCHAR NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS productstyle (
+CREATE TABLE IF NOT EXISTS masterstyle (
   style_id SERIAL PRIMARY KEY,
   product_id INT NOT NULL,
   style_name VARCHAR NOT NULL,
@@ -17,7 +16,7 @@ CREATE TABLE IF NOT EXISTS productstyle (
   FOREIGN KEY (product_id) REFERENCES productitem (product_id)
 );
 
-CREATE TABLE IF NOT EXISTS productfeat (
+CREATE TABLE IF NOT EXISTS masterfeat (
   feat_id SERIAL PRIMARY KEY,
   product_id INT NOT NULL,
   product_feat VARCHAR NOT NULL,
@@ -25,14 +24,14 @@ CREATE TABLE IF NOT EXISTS productfeat (
   FOREIGN KEY (product_id) REFERENCES productitem (product_id)
 );
 
-CREATE TABLE IF NOT EXISTS related (
+CREATE TABLE IF NOT EXISTS masterrelated (
   related_id SERIAL PRIMARY KEY,
   product_id INT NOT NULL,
   related_product_id INT NOT NULL,
   FOREIGN KEY (product_id) REFERENCES productitem (product_id)
 );
 
-CREATE TABLE IF NOT EXISTS productsku (
+CREATE TABLE IF NOT EXISTS mastersku (
   sku_id SERIAL PRIMARY KEY,
   style_id INT NOT NULL,
   product_size VARCHAR(255) NOT NULL,
