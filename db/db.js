@@ -12,7 +12,6 @@ const pool = new Pool({
 });
 
 
-
 const arrFile = ['productitem', 'productstyle', 'productfeat', 'related', 'productsku']
 const csvFile = ['product.csv', 'styles.csv', 'features.csv', 'related.csv', 'skus.csv']
 
@@ -58,12 +57,13 @@ const execute = async (tables) => {
 };
 
 
-const db = async () => {
+const connection = async () => {
   const client = await pool.connect();
 
   try {
     const res = await client.query(`SELECT NOW()`);
-    console.log("Pool Connection Granted", res.command);
+    console.log("Pool Connection Granted", res.rows[0]);
+    return res.rows
   } catch (error) {
     console.log("Error:", error);
   } finally {
@@ -72,7 +72,11 @@ const db = async () => {
 };
 
 //invoke above functions
-execute(arrFile);
-db()
+//uncoment out execute function to copy csv file into database
+// execute(arrFile);
+//invoke db pool connection
+connection()
 
-module.exports = db
+
+
+module.exports = pool
