@@ -39,3 +39,11 @@ CREATE TABLE IF NOT EXISTS productsku (
   product_quantity INT NOT NULL,
   FOREIGN KEY (style_id) REFERENCES productstyle (style_id)
 );
+
+CREATE TABLE IF NOT EXISTS photo (
+  photo_id SERIAL PRIMARY KEY,
+  style_id INT NOT NULL,
+  photo_url VARCHAR,
+  thumbnail_url VARCHAR,
+  FOREIGN KEY(style_id) REFERENCES productstyle(style_id)
+)
