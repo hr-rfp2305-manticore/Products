@@ -12,8 +12,8 @@ const pool = new Pool({
 });
 
 
-const arrFile = ['productitem', 'productstyle', 'productfeat', 'related', 'productsku']
-const csvFile = ['product.csv', 'styles.csv', 'features.csv', 'related.csv', 'skus.csv']
+const arrFile = ['productitem', 'productstyle', 'productfeat', 'related', 'productsku','photo']
+const csvFile = ['product.csv', 'styles.csv', 'features.csv', 'related.csv', 'skus.csv','photos.csv']
 
 const execute = async (tables) => {
   try {
@@ -74,6 +74,8 @@ const connection = async () => {
 //invoke above functions
 //uncoment out execute function to copy csv file into database
 // execute(arrFile);
+
+
 //invoke db pool connection
 connection()
 
