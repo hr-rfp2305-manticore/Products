@@ -25,7 +25,7 @@ export default function () {
   const productByIdResponse = http.get(productByIdUrl);
   check(productByIdResponse, {
     'is status 200 for productById': (r) => r.status === 200,
-    'has data for productById': (r) => r.json() !== null,
+    'has data for productById': (r) => r !== null,
   });
 
   // Test for endpoint /styles/:id

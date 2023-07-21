@@ -3,11 +3,11 @@ const fs = require('fs');
 const copyFrom = require('pg-copy-streams').from;
 
 const pool = new Pool({
-  user: 'andymoc',
-  host: 'localhost',
-  database: 'product',
-  password: 'postgres',
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 const aggregateProduct = async () => {
