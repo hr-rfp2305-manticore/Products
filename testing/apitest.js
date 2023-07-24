@@ -1,6 +1,7 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
+
 export let options = {
   insecureSkipTLSverify: true,
   noConnectionReuse: false,
@@ -9,7 +10,7 @@ export let options = {
 };
 
 export default function () {
-  const baseUrl = 'https://localhost:3000'
+  const baseUrl = `http://18.188.254.89:3000`
 
   // Test for endpoint /products
   const allProductsUrl = `${baseUrl}/products`
